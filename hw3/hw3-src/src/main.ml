@@ -35,6 +35,7 @@ let rec subst x (e1:expr) (e2:expr) = match e2 with
 | Binop(bop, e3, e4) -> Binop (bop, (subst x e1 e3),(subst x e1 e4)) 
 | Let(y, e3, e4) -> if y=x then Let(y, (subst x e1 e3), e4) else Let(y, (subst x e1 e3), (subst x e1 e4))
 | If(e3, e4, e5) ->  If((subst x e1 e3), (subst x e1 e4), (subst x e1 e5))
+| _ -> raise CannotStep
 
 
 let rec step (w:expr) : expr = match w with
@@ -44,6 +45,7 @@ let rec step (w:expr) : expr = match w with
 | Binop (bop, e1, e2) -> if(isval e1) then (if (isval e2) then (calc bop e1 e2) else Binop(bop, e1, step e2)) else Binop(bop, step e1, e2)
 | Let(x, e1, e2) -> if(isval e1) then (subst x e1 e2) else Let(x, step e1, e2)
 | If(e, e1, e2) -> if(e=Boolean(true)) then e1 else (if(e=Boolean(false)) then e2 else If(step e, e1, e2))
+| _ -> raise CannotStep
 
 
 let rec stepstar (e:expr) : expr = 
