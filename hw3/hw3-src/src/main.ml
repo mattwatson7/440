@@ -16,6 +16,7 @@ ast
 let rec isval (e:expr) : bool = match e with 
 | Integer _ -> true
 | Boolean _ -> true
+| _ -> false
 
 
 let calc bop e1 e2 = match bop, e1, e2 with
