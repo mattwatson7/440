@@ -13,7 +13,7 @@ let ast = Parser.prog Lexer.read lexbuf in
 ast
 
 
-let rec isval (e:expr) : bool = match e with 
+let isval (e:expr) : bool = match e with 
 | Integer _ -> true
 | Boolean _ -> true
 | _ -> false
