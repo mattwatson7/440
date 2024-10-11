@@ -41,8 +41,6 @@ let rec subst x (e1:expr) (e2:expr) = match e2 with
 | Nil -> Nil
 | Cons(e3, e4) -> Cons(subst x e1 e3, subst x e1 e4)
 | Match(e3, e4, y, z, e5) -> Match(subst x e1 e3, subst x e1 e4, y, z, subst x e1 e5)
-| _ -> raise CannotStep
-
 
 let rec step (w:expr) : expr = match w with
 | Var _ -> raise CannotStep
@@ -56,8 +54,6 @@ let rec step (w:expr) : expr = match w with
 | Nil -> raise CannotStep
 | Cons(e1, e2) -> if(isval e1) then (if(isval e2) then Cons(e1, e2) else Cons(e1, step e2)) else Cons(step e1, e2)
 | Match(e1, e2, x, y, e3) -> Nil
-| _ -> raise CannotStep
-
 
 let rec stepstar (e:expr) : expr = 
 if (isval e) then e else (stepstar (step e))
