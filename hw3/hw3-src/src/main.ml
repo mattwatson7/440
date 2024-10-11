@@ -1,7 +1,7 @@
 open Ast
 
 (* Your name *)
-let my_name = "Your name here"
+let my_name = "Matt Watson"
 
 
 exception CannotStep
