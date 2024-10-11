@@ -15,7 +15,13 @@ parse
 | white {read lexbuf}
 | "*" {TIMES}
 | "+" {PLUS}
+| "-" {MINUS}
+| "/" {DIV}
 | "<=" {LEQ}
+| ">=" {GEQ}
+| "<" {LE}
+| ">" {GE}
+| "=" {EQ}
 | "&&" {AND}
 | "||" {OR}
 | "(" {LPAREN}
