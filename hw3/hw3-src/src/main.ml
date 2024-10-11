@@ -5,6 +5,7 @@ let my_name = "Matt Watson"
 
 
 exception CannotStep
+exception BopisnotValid
 
 
 let parse (s:string) : expr =
@@ -25,7 +26,7 @@ let calc bop e1 e2 = match bop, e1, e2 with
 | Leq, Integer(v1), Integer(v2) -> Boolean (v1<=v2)
 | And, Boolean(v1), Boolean(v2) -> Boolean (v1 && v2)
 | Or, Boolean(v1), Boolean(v2) -> Boolean (v1 || v2)
-| _ -> raise CannotStep
+| _ -> raise BopisnotValid
 
 
 let rec subst x (e1:expr) (e2:expr) = match e2 with 
@@ -53,7 +54,7 @@ let rec step (w:expr) : expr = match w with
 | Fun _ -> raise CannotStep
 | App(e1, e2) -> 
 | Nil -> raise CannotStep
-| Cons(e1, e2) ->
+| Cons(e1, e2) -> if(isval e1) then (if(isval e2) then cons(e1, e2) else cons(e1, step e2)) else cons(step e1, e2)
 | Match(e1, e2, x, y, e3) -> 
 | _ -> raise CannotStep
 
