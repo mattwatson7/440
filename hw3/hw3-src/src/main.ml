@@ -54,7 +54,7 @@ let rec step (w:expr) : expr = match w with
 | Fun _ -> raise CannotStep
 | App(e1, e2) -> Nil
 | Nil -> raise CannotStep
-| Cons(e1, e2) -> if(isval e1) then (if(isval e2) then cons(e1, e2) else cons(e1, step e2)) else cons(step e1, e2)
+| Cons(e1, e2) -> if(isval e1) then (if(isval e2) then Cons(e1, e2) else Cons(e1, step e2)) else Cons(step e1, e2)
 | Match(e1, e2, x, y, e3) -> Nil
 | _ -> raise CannotStep
 
