@@ -19,7 +19,6 @@ open Ast
 %token ELSE
 %token LET 
 %token IN
-%token EQ
 %token LPAREN
 %token RPAREN
 %token TRUE
