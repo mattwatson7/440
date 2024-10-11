@@ -4,8 +4,14 @@ open Ast
 
 (* token declarations *)
 %token PLUS 
-%token TIMES 
-%token LEQ 
+%token MINUS
+%token TIMES
+%token DIV
+%token LEQ
+%token GEQ
+%token LE
+%token GE
+%token EQ
 %token AND 
 %token OR 
 %token IF 
@@ -25,8 +31,9 @@ open Ast
 (* associative and priority *)
 %nonassoc IN
 %nonassoc ELSE
-%left PLUS
-%left TIMES
+%left PLUS MINUS
+%left TIMES DIV
+%left LEQ GEQ LE GE EQ
 %right OR
 %left AND
 
@@ -46,8 +53,14 @@ expr:
 | TRUE { Boolean (true) }
 | FALSE { Boolean (false) }
 | e1= expr ;  PLUS; e2=expr {Binop( Plus, e1, e2) } 
+| e1= expr ; MINUS; e2=expr {Binop( Minus, e1, e2) }
 | e1= expr ;  TIMES; e2=expr {Binop( Times, e1, e2) }
-| e1= expr ; LEQ; e2=expr {Binop(Leq, e1, e2)}
+| e1= expr ; DIV; e2=expr {Binop( Div, e1, e2) }
+| e1= expr ; LEQ; e2=expr {Binop( Leq, e1, e2)}
+| e1= expr; GEQ; e2=expr {Binop( Geq, e1, e2) }
+| e1= expr; LE; e2=expr {Binop( Le, e1, e2) }
+| e1= expr; GE; e2=expr {Binop( Ge, e1, e2) }
+| e1= expr; EQ; e2=expr {Binop( Eq, e1, e2) }
 | e1= expr; AND; e2=expr {Binop(And, e1,e2) }
 | e1= expr; OR; e2=expr {Binop(Or, e1,e2) }
 | LPAREN; e1=expr; RPAREN {e1}
