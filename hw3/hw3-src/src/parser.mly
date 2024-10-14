@@ -66,3 +66,4 @@ expr:
 | LET; x= VAR; EQ; e1=expr; IN; e2=expr {Let (x, e1,e2)}
 | IF; e1=expr; THEN; e2=expr; ELSE; e3=expr {If (e1,e2,e3)}
 | e1 = expr; e2 = expr; {APP (e1,e2)}
+| MATCH; e1 = expr; WITH; NIL; ARROW; e2 = expr; ORR; s1 = string; CONS; s2 = string; ARROW; e3 = expr {MATCH (e1, e2, s1, s2, e3)}
