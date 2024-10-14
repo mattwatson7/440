@@ -58,7 +58,7 @@ let rec step (w:expr) : expr = match w with
 | Fun _ -> raise CannotStep
 | App (Fun (x, e1), e2) -> subst x e2 e1
 | App (_, e2) -> raise CannotStep
-| Nil -> []
+| Nil -> raise CannotStep
 | Cons(e1, e2) -> if(isval e1) then (if(isval e2) then Cons(e1, e2) else Cons(e1, step e2)) else Cons(step e1, e2)
 | Match(e1, e2, x, y, e3) -> match (isval e1) with Nil -> (step e1) | h::t -> (subst y t (subst x h e3)) 
 
