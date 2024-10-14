@@ -76,4 +76,4 @@ expr:
 | MATCH; e1 = expr; WITH; NIL; ARROW; e2 = expr; ORR; s1 = VAR; CONS; s2 = VAR; ARROW; e3 = expr {Match (e1, e2, s1, s2, e3)}
 | e1 = expr; CONS; e2 = expr {Cons (e1, e2)}
 | NIL; {Nil}
-| v1 = VAR; ARROW; e1 = expr {FUN (v1, e1)}
+| FUN; v1 = VAR; ARROW; e1 = expr {Fun (v1, e1)}
