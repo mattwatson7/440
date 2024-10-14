@@ -23,6 +23,7 @@ open Ast
 %token RPAREN
 %token TRUE
 %token FALSE
+%token ORR
 %token <int> INT
 %token <string> VAR
 %token EOF 
