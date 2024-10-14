@@ -24,6 +24,11 @@ open Ast
 %token TRUE
 %token FALSE
 %token ORR
+%token NIL
+%token CONS
+%token ARROW
+%token MATCH
+%token WITH
 %token <int> INT
 %token <string> VAR
 %token EOF 
