@@ -65,3 +65,4 @@ expr:
 | LPAREN; e1=expr; RPAREN {e1}
 | LET; x= VAR; EQ; e1=expr; IN; e2=expr {Let (x, e1,e2)}
 | IF; e1=expr; THEN; e2=expr; ELSE; e3=expr {If (e1,e2,e3)}
+| e1 = expr; e2 = expr; {APP (e1,e2)}
