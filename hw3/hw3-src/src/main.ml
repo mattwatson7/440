@@ -46,7 +46,7 @@ let rec subst x (e1:expr) (e2:expr) = match e2 with
 | App(e3, e4) -> App(subst x e1 e3, subst x e1 e4)
 | Nil -> Nil
 | Cons(e3, e4) -> Cons(subst x e1 e3, subst x e1 e4)
-| Match(e3, e4, y, z, e5) -> if y=x || z=x then Match(subst x e1 e3, subst x e1 e4, e5) else Match(subst x e1 e3, subst x e1 e4, y, z, subst x e1 e5)
+| Match(e3, e4, y, z, e5) -> if y=x || z=x then Match(subst x e1 e3, subst x e1 e4, y, z, e5) else Match(subst x e1 e3, subst x e1 e4, y, z, subst x e1 e5)
 
 let rec step (w:expr) : expr = match w with
 | Var _ -> raise CannotStep
