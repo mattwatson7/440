@@ -34,6 +34,12 @@ parse
 | "then" {THEN}
 | "true" {TRUE}
 | "false" {FALSE}
+| "->" {ARROW}
+| "|" {ORR}
+| "[]" {NIL}
+| "::" {CONS}
+| "with" {WITH}
+| "match" {MATCH}
 | int {INT (int_of_string (Lexing.lexeme lexbuf))}
 | id  {VAR (Lexing.lexeme lexbuf)}
 | eof {EOF}
