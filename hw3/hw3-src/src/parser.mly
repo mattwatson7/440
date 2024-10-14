@@ -29,6 +29,7 @@ open Ast
 %token ARROW
 %token MATCH
 %token WITH
+%token FUN
 %token <int> INT
 %token <string> VAR
 %token EOF 
