@@ -54,11 +54,12 @@ prog:
 e=expr; EOF {e};
 
 expr:
+| e1 = expr; e2 = expr {App (e1,e2)}
+
 | x = VAR { Var (x) }
 | i = INT { Integer (i) }
 | TRUE { Boolean (true) }
 | FALSE { Boolean (false) }
-| e1 = expr; e2 = expr {App (e1,e2)}
 | e1= expr ;  PLUS; e2=expr {Binop( Plus, e1, e2) } 
 | e1= expr ; MINUS; e2=expr {Binop( Minus, e1, e2) }
 | e1= expr ;  TIMES; e2=expr {Binop( Times, e1, e2) }
