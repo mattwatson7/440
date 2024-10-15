@@ -55,6 +55,7 @@ prog:
 e=expr; EOF {e};
 
 expr:
+| e1 = expr; e2 = expr {App (e1,e2)}
 | x = VAR { Var (x) }
 | i = INT { Integer (i) }
 | TRUE { Boolean (true) }
@@ -73,8 +74,7 @@ expr:
 | LPAREN; e1=expr; RPAREN {e1}
 | LET; x= VAR; EQ; e1=expr; IN; e2=expr {Let (x, e1,e2)}
 | IF; e1=expr; THEN; e2=expr; ELSE; e3=expr {If (e1,e2,e3)}
-| e1 = expr; e2 = expr {App (e1,e2)}
+| FUN; v1 = VAR; ARROW; e1 = expr; {Fun (v1, e1)}
 | MATCH; e1 = expr; WITH; NIL; ARROW; e2 = expr; ORR; s1 = VAR; CONS; s2 = VAR; ARROW; e3 = expr {Match (e1, e2, s1, s2, e3)}
 | e1 = expr; CONS; e2 = expr {Cons (e1, e2)}
 | NIL; {Nil}
-| FUN; v1 = VAR; ARROW; e1 = expr; {Fun (v1, e1)}
