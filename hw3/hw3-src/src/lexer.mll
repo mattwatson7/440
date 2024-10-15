@@ -28,7 +28,6 @@ parse
 | ")" {RPAREN}
 | "let" {LET}
 | "in" {IN}
-| "=" {EQ}
 | "if" {IF}
 | "else" {ELSE}
 | "then" {THEN}
@@ -43,6 +42,3 @@ parse
 | int {INT (int_of_string (Lexing.lexeme lexbuf))}
 | id  {VAR (Lexing.lexeme lexbuf)}
 | eof {EOF}
-
-
-
