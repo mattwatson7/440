@@ -30,6 +30,7 @@ open Ast
 %token MATCH
 %token WITH
 %token FUN
+%token APP
 %token <int> INT
 %token <string> VAR
 %token EOF 
@@ -42,6 +43,7 @@ open Ast
 %left LEQ GEQ LE GE EQ
 %right OR
 %left AND
+%left CONS
 
 
 %start <Ast.expr> prog
@@ -54,8 +56,6 @@ prog:
 e=expr; EOF {e};
 
 expr:
-| e1 = expr; e2 = expr {App (e1,e2)}
-
 | x = VAR { Var (x) }
 | i = INT { Integer (i) }
 | TRUE { Boolean (true) }
@@ -74,6 +74,7 @@ expr:
 | LPAREN; e1=expr; RPAREN {e1}
 | LET; x= VAR; EQ; e1=expr; IN; e2=expr {Let (x, e1,e2)}
 | IF; e1=expr; THEN; e2=expr; ELSE; e3=expr {If (e1,e2,e3)}
+| e1 = expr; APP; e2 = expr {App (e1,e2)}
 | MATCH; e1 = expr; WITH; NIL; ARROW; e2 = expr; ORR; s1 = VAR; CONS; s2 = VAR; ARROW; e3 = expr {Match (e1, e2, s1, s2, e3)}
 | e1 = expr; CONS; e2 = expr {Cons (e1, e2)}
 | NIL; {Nil}
