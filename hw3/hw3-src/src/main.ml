@@ -60,10 +60,11 @@ let rec step (w:expr) : expr = match w with
 | App (e1, e2) -> if (isval e1) then (App(e1, step e2)) else (App(step e1, e2)) 
 | Nil -> Nil
 | Cons(e1, e2) -> if(isval e1) then (if(isval e2) then Cons(e1, e2) else Cons(e1, step e2)) else Cons(step e1, e2)
-| Match(e1, e2, x, y, e3) -> match e1 with
+| Match(e1, e2, x, y, e3) -> if (isval e1) then match e1 with
        | Nil -> e2 
        | Cons(h,t) -> (subst y t (subst x h e3)) 
-       | _ -> Match(step e1, e2, x, y, e3)
+       | _ -> raise CannotStep
+       else Match (step e1, e2, x, y, e3)
 
 let rec stepstar (e:expr) : expr = 
 if (isval e) then e else (stepstar (step e))
