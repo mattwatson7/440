@@ -38,6 +38,7 @@ parse
 | "::" {CONS}
 | "with" {WITH}
 | "match" {MATCH}
+| "fun" {FUN}
 | "->" {ARROW}
 | int {INT (int_of_string (Lexing.lexeme lexbuf))}
 | id  {VAR (Lexing.lexeme lexbuf)}
