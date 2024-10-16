@@ -73,7 +73,7 @@ expr:
 | LPAREN; e1=expr; RPAREN {e1}
 | LET; x= VAR; EQ; e1=expr; IN; e2=expr {Let (x, e1,e2)}
 | IF; e1=expr; THEN; e2=expr; ELSE; e3=expr {If (e1,e2,e3)}
-| e1 = expr; e2 = expr {App (e1,e2)}
+| expr; expr {App ($1,$2)}
 | FUN; v1 = VAR; ARROW; e1 = expr; {Fun (v1, e1)}
 | NIL; {Nil}
 | e1 = expr; CONS; e2 = expr {Cons (e1, e2)}
