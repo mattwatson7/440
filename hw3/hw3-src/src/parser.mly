@@ -26,10 +26,10 @@ open Ast
 %token ORR
 %token NIL
 %token CONS
-%token ARROW
 %token MATCH
 %token WITH
 %token FUN
+%token ARROW
 %token <int> INT
 %token <string> VAR
 %token EOF 
