@@ -42,7 +42,6 @@ open Ast
 %left LEQ GEQ LE GE EQ
 %right OR
 %left AND
-%left CONS
 
 
 %start <Ast.expr> prog
