@@ -56,7 +56,7 @@ let rec step (w:expr) : expr = match w with
 | Let(x, e1, e2) -> if(isval e1) then (subst x e1 e2) else Let(x, step e1, e2)
 | If(e, e1, e2) -> if(e=Boolean(true)) then e1 else (if(e=Boolean(false)) then e2 else If(step e, e1, e2))
 | Fun _ -> raise CannotStep
-| App (Fun (x, e1), e2) -> if (isval e2) then (subst x e2 e1) else (App(Fun(x, eq), step e2))
+| App (Fun (x, e1), e2) -> if (isval e2) then (subst x e2 e1) else (App(Fun(x, e1), step e2))
 | App (e1, e2) -> if (isval e1) then (App(e1, step e2)) else (App(step e1, e2)) 
 | Nil -> Nil
 | Cons(e1, e2) -> if(isval e1) then (if(isval e2) then Cons(e1, e2) else Cons(e1, step e2)) else Cons(step e1, e2)
