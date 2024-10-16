@@ -65,7 +65,7 @@ let rec step (w:expr) : expr = match w with
 | Match(e1, e2, x, y, e3) -> if (isval e1) then (match e1 with
                                    | Nil -> e2
                                    | Cons(h, t) -> subst y t (subst x h e3)
-                                   | _ raise CannotStep )
+                                   | _ -> raise CannotStep )
                                    else
                                    Match(step e1, e2, x, y, e3)
 
