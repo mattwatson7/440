@@ -17,6 +17,8 @@ let isval (e:expr) : bool = match e with
 | Integer _ -> true
 | Boolean _ -> true
 | Fun _ -> true
+| Nil -> true
+| Cons(e1, e2) -> isval e1 && isval e2
 | _ -> false
 
 
