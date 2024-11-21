@@ -35,7 +35,7 @@ let rec typeof env e = match e with
 | App (e1, e2) -> let t2 = (typeof env e2) in  let t1=(typeof env e1) in (match t1 with Tfun(x, y) -> (if t2=x then y else raise Nottyped)  | _ -> raise Nottyped) 
 | Nil(t) -> Tlist(t)
 | Cons(e1, e2) -> 
-| Match ->
+| Match (e1, t1, e2, s1, s2, e3) ->
 (*| _ -> raise Notimplemented*)
 
 and typeofbop env bop e1 e2 = match bop with 
