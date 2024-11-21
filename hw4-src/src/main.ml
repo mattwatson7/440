@@ -49,7 +49,6 @@ and typeofbop env bop e1 e2 = match bop with
 | Eq -> if (typeof env e1 = Tint && typeof env e2=Tint) then Tbool else raise Nottyped
 | And -> if (typeof env e1 = Tbool && typeof env e2 = Tbool) then Tbool else raise Nottyped
 | Or -> if (typeof env e1 = Tbool && typeof env e2 = Tbool) then Tbool else raise Nottyped
-| _ -> raise Notimplemented
 
 let typecheck e = let _ = (typeof empty  e) in e 
 
