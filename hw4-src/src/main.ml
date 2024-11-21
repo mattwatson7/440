@@ -34,9 +34,9 @@ let rec typeof env e = match e with
 | Fun (x, t1, e2) -> let t2 = typeof (insert env x t1) e2 in Tfun(t1,t2)
 | App (e1, e2) -> let t2 = (typeof env e2) in  let t1=(typeof env e1) in (match t1 with Tfun(x, y) -> (if t2=x then y else raise Nottyped)  | _ -> raise Nottyped) 
 | Nil(t) -> Tlist(t)
-| Cons(e1, e2) -> 
-| Match (e1, t1, e2, s1, s2, e3) ->
-(*| _ -> raise Notimplemented*)
+(*| Cons(e1, e2) -> 
+| Match (e1, t1, e2, s1, s2, e3) -> *)
+| _ -> raise Notimplemented
 
 and typeofbop env bop e1 e2 = match bop with 
 | Plus ->  if (typeof env e1 = Tint && typeof env e2 = Tint) then Tint else raise Nottyped 
@@ -49,7 +49,7 @@ and typeofbop env bop e1 e2 = match bop with
 | Eq -> if (typeof env e1 = Tint && typeof env e2=Tint) then Tbool else raise Nottyped
 | And -> if (typeof env e1 = Tbool && typeof env e2 = Tbool) then Tbool else raise Nottyped
 | Or -> if (typeof env e1 = Tbool && typeof env e2 = Tbool) then Tbool else raise Nottyped
-(*| _ -> raise Notimplemented*)
+| _ -> raise Notimplemented
 
 let typecheck e = let _ = (typeof empty  e) in e 
 
