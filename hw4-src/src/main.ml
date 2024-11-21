@@ -33,6 +33,7 @@ let rec typeof env e = match e with
 | Let (x, t1, e1, e2) -> if (typeof env e1 = t1) then (typeof (insert env x t1) e2) else raise Nottyped 
 | Fun (x, t1, e2) -> let t2 = typeof (insert env x t1) e2 in Tfun(t1,t2)
 | App (e1, e2) -> let t2 = (typeof env e2) in  let t1=(typeof env e1) in (match t1 with Tfun(x, y) -> (if t2=x then y else raise Nottyped)  | _ -> raise Nottyped) 
+| [] -> Tlist t
 | _ -> raise Notimplemented
 
 and typeofbop env bop e1 e2 = match bop with 
