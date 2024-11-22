@@ -39,7 +39,7 @@ let rec typeof env e = match e with
       (match t2 with
        | Tlist(t) -> if t = t1 then Tlist(t) else raise Nottyped
        | _ -> raise Nottyped)
-| Match (e1, t1, e2, s1, s2, e3) -> let t_list = typeof env e1 in
+| Match (e1, _, e2, s1, s2, e3) -> let t_list = typeof env e1 in
       (match t_list with
        | Tlist(t) ->
            let t2 = typeof env e2 in
