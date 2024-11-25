@@ -63,6 +63,7 @@ let rec isval (e:expr) : bool = match e with
 
 let calc bop e1 e2 = match bop, e1, e2 with
 | Plus, Integer(v1), Integer(v2) ->  Integer(v1+v2)
+| Minus, Integer(v1), Integer(v2) -> Integer(v1-v2)
 | Times, Integer(v1), Integer(v2) -> Integer(v1*v2)
 | Div, Integer(v1), Integer(v2) ->  Integer(v1/v2)
 | Leq, Integer(v1), Integer(v2) -> Boolean (v1<=v2)
