@@ -39,6 +39,7 @@ let rec typeof env e = match e with
 
 and typeofbop env bop e1 e2 = match bop with 
 | Plus ->  if (typeof env e1 = Tint && typeof env e2 = Tint) then Tint else raise Nottyped 
+| Minus -> if (typeof env e1 = Tint && typeof env e2 = Tint) then Tint else raise Nottyped 
 | Times -> if (typeof env e1 = Tint && typeof env e2 =Tint) then Tint else raise Nottyped
 | Div -> if (typeof env e1 = Tint && typeof env e2 = Tint) then Tint else raise Nottyped
 | Leq -> if (typeof env e1 = Tint && typeof env e2=Tint) then Tbool else raise Nottyped
