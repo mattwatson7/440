@@ -1,6 +1,6 @@
 (** type of expressions *)
 
-type bop = Plus | Times | Leq | And | Or  | Div | Geq | Le | Ge | Eq 
+type bop = Plus | Minus | Times | Leq | And | Or  | Div | Geq | Le | Ge | Eq 
 
 type typ = Tint | Tbool | Tfun of (typ * typ) | Tlist of (typ) 
 
